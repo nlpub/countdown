@@ -2,22 +2,23 @@
 <html>
 <head>
 <title>Таймер конференций — NLPub</title>
+<meta name="description" content="Таймер конференций отсчитывает сроки приёма работ на конференции."/>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-var backi= -1;
+var backi = -1;
 
 // HELPER FUNCTIONS
 // x is date object
-var timeDescription = function(x) {  
+var timeDescription = function(x) {
   return x.toLocaleString();
 }
 
 var timeLeftDescription = function(x) {
-   
+
   var t = x.getTime();
   if(t<0) t=0;
-  
+
   var tseconds = t / 1000;
   var seconds = Math.floor(tseconds) % 60;
   var tminutes = tseconds / 60;
@@ -26,7 +27,7 @@ var timeLeftDescription = function(x) {
   var hours = Math.floor(thours) % 24;
   var tdays = thours / 24;
   var days = Math.floor(tdays);
-  
+
   return days + " дн., " + hours + "ч. " + minutes + "м. " + seconds + "с.";
 }
 
@@ -53,7 +54,7 @@ deadlines.push({venue: "КИИ", area: "Искусственный интелл�
 
 // Display function, called every second or so
 function refreshDisplay() {
-    
+
     var dc = new Date();
     $("#currtime").text("Текущее время: " + timeDescription(dc));
 
@@ -61,19 +62,19 @@ function refreshDisplay() {
     var utc = dc.getTime() + (dc.getTimezoneOffset() * 60000);
     var utc_msk_offset = +3;
     var d = new Date(utc + (3600000*utc_msk_offset));
-    
+
     // calculate and display deadlines
     for(var i=0;i<deadlines.length;i++) {
       var dl= deadlines[i];
       var timeLeft= new Date(dl.deadline.getTime() - d.getTime());
-      
+
       // convert the deadline (specified in MSK) to Local timezone time for displaying on the countdown
       // (since the timeline displayed to the user should be listed in their local time)
       var dlLocal = new Date(dl.deadline.getTime() - (dc.getTimezoneOffset() * 60000) - (3600000*utc_msk_offset));
-      
+
       warningString= "";
       if("approx" in dl) { warningString= "на основе предыдущего срока!"; }
-      
+
       $("#deadline" + i).html(
         "<div class=\"tld\">" + timeLeftDescription(timeLeft) + "</div>"
       + "<div class=\"vd\">" + dl.venue + "</div>"
@@ -82,7 +83,7 @@ function refreshDisplay() {
       + "<div class=\"wd\">" + warningString + "</div>"
       );
     }
-    
+
     if(backi !== -1) {
       var dl= deadlines[backi];
       var timeLeft= new Date(dl.deadline.getTime() - d.getTime());
@@ -91,22 +92,21 @@ function refreshDisplay() {
         + timeLeftDescription(timeLeft)
         );
     }
-    
+
 }
 
 // int main(){}
-$(document).ready(function() {  
-  
+$(document).ready(function() {
+
   // create divs for all deadlines and insert into DOM
   for(var i=0;i<deadlines.length;i++) {
     var dl= deadlines[i];
     $("<div class=dd id=deadline" + i + "></div>").appendTo("div#deadlinesdiv");
     var divid= "#deadline" + i;
-    
+
     $(divid).hide();
     $(divid).fadeIn(200*(i+1), function() { }); // create a nice fade in effect
-    
-    
+
     $(divid).click(function(z) { // Fade in backface and make a giant timer for this event on click
       // self-executing function hackery :)
       return function() {
@@ -114,16 +114,15 @@ $(document).ready(function() {
         $("#backface").fadeIn("slow"); // fade in white stuff
       }
     }(i));
-    
-    
+
   }
- 
+
   // set up deadline timer to redraw
   setInterval(
     function(){ refreshDisplay(); },
     1000
   );
-  
+
   $("#backface").click(function() {
     backi = -1;
     $("#backface").fadeOut("slow");
@@ -133,7 +132,7 @@ $(document).ready(function() {
     backi = -1;
     $("#instrown").fadeToggle();
   });
-  
+
   // draw!
   refreshDisplay();
 
@@ -189,13 +188,13 @@ h1{
   padding-top: 15px;
   padding-right: 25px;
   font-size: 14px;
-  
+
 }
 
 /* The cells that contain each deadline */
 .dd{
   padding: 10px;
-  margin-bottom: 3px;  
+  margin-bottom: 3px;
   background-color: #EEE;
   border: 1px solid #DDD;
   cursor: pointer;
@@ -275,8 +274,7 @@ h1{
 
 <div id="surround">
   <h1>Таймер конференций</h1>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://count.nlpub.ru/" data-text="Таймер конференций отсчитывает сроки приёма работ на конференции.">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://countdown.nlpub.ru/" data-text="Таймер конференций отсчитывает сроки приёма работ на конференции." data-via="nlpub" data-lang="ru" data-related="nlpub">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   <div id="currtime"></div>
   <br /><br />
   <div id="deadlinesdiv"></div>
