@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Academic Deadlines Countdown Timer</title>
+<title>Таймер конференций — NLPub</title>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -26,84 +26,58 @@ var timeLeftDescription = function(x) {
   var tdays = thours / 24;
   var days = Math.floor(tdays);
   
-  return days + " days, " + hours + "h " + minutes + "m " + seconds + "s";
+  return days + " дн., " + hours + "ч. " + minutes + "м. " + seconds + "с.";
 }
 
 // DATABASE
-// Note 1: CODE ASSUMES DEADLINES ARE SPECIFIED IN PST TIME
+// Note 1: CODE ASSUMES DEADLINES ARE SPECIFIED IN MSK TIME
 // Note 2: dates are shifted by 1 for month, as they start at 0. Thanks date object in Javascript!
-var deadlines= new Array();
+var deadlines = new Array();
 
-// April 8, 2013 (23:59 GMT) = 4:59pm PST
-deadlines.push({venue: "ICCV", area: "Computer Vision", deadline: new Date(2013, 3, 12, 18, 0, 0, 0)});
+deadlines.push({venue: "EACL (короткие статьи)", area: "Компьютерная лингвистика", deadline: new Date(2016, 12 - 1, 17 - 1, 02, 59, 59, 0)});
 
-//Friday, 01 June 2012 16:00 (American Pacific Time
-deadlines.push({venue: "NIPS", area: "Machine Learning", deadline: new Date(2013, 5, 1, 16, 0, 0, 0), approx: 1});
+deadlines.push({venue: "BSNLP", area: "Компьютерная лингвистика", deadline: new Date(2017, 1 - 1, 16 - 1, 23, 59, 59, 0)});
 
-// http://www.icra2013.org/
-// 23:59:00 (US Pacific Time) on September 17, 2012
-deadlines.push({venue: "ICRA", area: "Robotics", deadline: new Date(2013, 8, 17, 23, 59, 0, 0), approx: 1}); 
+deadlines.push({venue: "Диалог", area: "Компьютерная лингвистика", deadline: new Date(2017, 2 - 1, 15 - 1, 23, 59, 59, 0), approx: 1});
 
-// http://www.pamitc.org/cvpr13/
-// November 15, 2012
-deadlines.push({venue: "CVPR", area: "Computer Vision", deadline: new Date(2013, 10, 15, 15, 59, 0, 0), approx: 1});
+deadlines.push({venue: "KESW", area: "Инженерия знаний", deadline: new Date(2017, 4 - 1, 15 - 1, 23, 59, 59, 0), approx: 1});
 
-//Submission deadline:     January 15th 2013
-deadlines.push({venue: "ICLR", area: "Deep Learning", deadline: new Date(2014, 0, 15, 23, 59, 0, 0), approx: 1});
+deadlines.push({venue: "RuSSIR", area: "Информационный поиск", deadline: new Date(2017, 5 - 1, 15 - 1, 23, 59, 59, 0), approx: 1});
 
-// http://s2013.siggraph.org/submitters/technical-papers
-// January 17 2013
-deadlines.push({venue: "SIGGRAPH", area: "Graphics", deadline: new Date(2014, 0, 17, 14, 0, 0, 0), approx: 1});
+deadlines.push({venue: "DAMDID/RCDL", area: "Анализ данных", deadline: new Date(2017, 6 - 1, 5 - 1, 23, 59, 59, 0), approx: 1});
 
-//January 24, 2012 (11:59 PM PST)
-deadlines.push({venue: "AAAI", area: "Artificial Intelligence", deadline: new Date(2014, 0, 19, 23, 59, 0, 0), approx: 1});
+deadlines.push({venue: "Открытая конференция ИСП РАН", area: "Открытые данные", deadline: new Date(2017, 9 - 1, 30 - 1, 23, 59, 59, 0), approx: 1});
 
-//Full Paper Submission: February 1, 2013, 23:59:59 PST
-deadlines.push({venue: "RSS", area: "Robotics", deadline: new Date(2014, 1, 1, 23, 59, 0, 0), approx: 1});
-
-// Feb 15, 2013
-deadlines.push({venue: "ICML", area: "Machine Learning", deadline: new Date(2014, 1, 15, 23, 59, 0, 0), approx: 1});
-
-// Friday, March 1st, 11:59pm UTC: = 3:59pm PST
-deadlines.push({venue: "UAI", area: "Machine Learning", deadline: new Date(2014, 2, 1, 15, 59, 0, 0), approx: 1});
-
-// Mar. 15, 2013
-deadlines.push({venue: "IROS", area: "Robotics", deadline: new Date(2014, 2, 15, 23, 59, 0, 0), approx: 1});
-
-
-// other AI conferences?
-// WAFR
-// IJCAI
-// PAMI ?
+deadlines.push({venue: "КИИ", area: "Искусственный интеллект", deadline: new Date(2018, 5 - 1, 30 - 1, 23, 59, 59, 0), approx: 1});
 
 // Display function, called every second or so
 function refreshDisplay() {
     
-    var dc= new Date();
-    $("#currtime").text("Current time: " + timeDescription(dc));
-    
-    // convert from Local time to PST time
+    var dc = new Date();
+    $("#currtime").text("Текущее время: " + timeDescription(dc));
+
+    // convert from Local time to MSK time
     var utc = dc.getTime() + (dc.getTimezoneOffset() * 60000);
-    var utc_pst_offset = -8;
-    var d = new Date(utc + (3600000*utc_pst_offset));
+    var utc_msk_offset = +3;
+    var d = new Date(utc + (3600000*utc_msk_offset));
     
     // calculate and display deadlines
     for(var i=0;i<deadlines.length;i++) {
       var dl= deadlines[i];
       var timeLeft= new Date(dl.deadline.getTime() - d.getTime());
       
-      // convert the deadline (specified in PST) to Local timezone time for displaying on the countdown
+      // convert the deadline (specified in MSK) to Local timezone time for displaying on the countdown
       // (since the timeline displayed to the user should be listed in their local time)
-      var dlLocal = new Date(dl.deadline.getTime() - (dc.getTimezoneOffset() * 60000) - (3600000*utc_pst_offset));
+      var dlLocal = new Date(dl.deadline.getTime() - (dc.getTimezoneOffset() * 60000) - (3600000*utc_msk_offset));
       
       warningString= "";
-      if("approx" in dl) { warningString= "based on previous year!"; }
+      if("approx" in dl) { warningString= "на основе предыдущего срока!"; }
       
       $("#deadline" + i).html(
         "<div class=\"tld\">" + timeLeftDescription(timeLeft) + "</div>"
       + "<div class=\"vd\">" + dl.venue + "</div>"
       + "<div class=\"ad\">" + dl.area + "</div>"
-      + "<div class=\"td\"> Deadline: " + timeDescription(dlLocal) + "</div>"
+      + "<div class=\"td\"> Приём работ до " + timeDescription(dlLocal) + ".</div>"
       + "<div class=\"wd\">" + warningString + "</div>"
       );
     }
@@ -281,19 +255,11 @@ h1{
   font-weight: bold;
   z-index: 889;
 }
-#musiclink a{
-  color: #AAA;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-}
-
 #makeown {
   text-decoration: underline;
   color: #008;
   cursor: pointer;
 }
-
 #instrown {
   display: none;
   background-color: #EEE;
@@ -320,7 +286,7 @@ h1{
 <div id="backface"><div id="backfacetext"></div></div>
 
 <div id="surround">
-  <h1>Academic Countdown</h1>
+  <h1>Таймер конференций</h1>
   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://academiccountdown.com" data-text="Academic Countdown counts down to conference/journal deadlines">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   <div id="currtime"></div>
@@ -328,19 +294,19 @@ h1{
   <div id="deadlinesdiv"></div>
   <br />
   <div id="bottompart">
-  <p>During beta support is only for AI conferences/journals. Don't place absolute trust into exact time.</p>
-  <div id="makeown">make your own!</div><br />
-  <div id="instrown">simply download the <a href="http://cs.stanford.edu/~karpathy/academic_countdown.html">.html file</a> of this page and change the dates on top of the file in javascript (some instructions are given in source). Modify html as you wish.</div>
+  <p>Подробнее о мероприятиях на странице <a href="https://nlpub.ru/Мероприятия">https://nlpub.ru/Мероприятия</a>.</p>
+  <p>Обязательно проверяйте время на официальных сайтах конференций!</p>
+  <p>Все изменения и правки принимаются на GitHub: <a href="https://github.com/nlpub/countdown">nlpub/countdown</a>.</p>
+  <div id="makeown">Хочу так же!</div><br />
+  <div id="instrown">Достаточно скачать исходный <a href="http://cs.stanford.edu/~karpathy/academic_countdown.html">HTML-файл</a> данного таймера и поменять даты.</div>
 
   <br />
   <br />
   </div>
-  
-  <div id="musiclink"><a href="http://www.youtube.com/watch?v=AyggY_R3jU8#t=1m56s" target="_blank">Music</a></div>
 </div>
 
 <div id="signature">
-Maintained by <a href="https://twitter.com/karpathy">@karpathy</a><br />
+На основе таймера от <a href="https://twitter.com/karpathy">@karpathy</a>.<br />
 </div>
 
 </body>
