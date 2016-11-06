@@ -10,5 +10,3 @@ This is an academic countdown ran at <http://countdown.nlpub.ru/>. It helps you 
 ## Acknowledgements
 
 The original implementation belongs to @karpathy: <http://cs.stanford.edu/people/karpathy/academic_countdown.html>.
-
-Academic countdown on NLPub.
