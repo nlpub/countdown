@@ -65,7 +65,7 @@ deadlines.push({venue: "КИИ", area: "Искусственный интелл�
 function refreshDisplay() {
 
     var dc = new Date();
-    $("#currtime").text("Текущее время: " + timeDescription(dc));
+    $("#currtime").text("Текущее время: " + timeDescription(dc) + ".");
 
     // convert from Local time to MSK time
     var utc = dc.getTime() + (dc.getTimezoneOffset() * 60000);
