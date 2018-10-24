@@ -1,6 +1,6 @@
 # Academic Countdown
 
-This is an academic countdown ran at <http://countdown.nlpub.ru/>. It helps you to track the deadlines for the Russian scientific conferences on computational linguistics, information retrieval and related events.
+This is an academic countdown ran at <https://countdown.nlpub.ru/>. It helps you to track the deadlines for the Russian scientific conferences on computational linguistics, information retrieval and related events.
 
 ## Contributing
 
