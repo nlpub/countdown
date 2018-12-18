@@ -46,10 +46,6 @@ var timeLeftDescription = function(x) {
 // Note 2: dates are shifted by 1 for month, as they start at 0. Thanks date object in Javascript!
 var deadlines = new Array();
 
-deadlines.push({venue: "NAACL", area: "Компьютерная лингвистика", deadline: new Date(2018, 12 - 1, 3 - 1, 14, 59, 59, 0)});
-
-deadlines.push({venue: "BSNLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 1 - 1, 20 - 1, 23, 59, 59, 0), approx: 1});
-
 deadlines.push({venue: "Диалог", area: "Компьютерная лингвистика", deadline: new Date(2019, 1 - 1, 31 - 1, 23, 59, 59, 0)});
 
 deadlines.push({venue: "NLDB", area: "Естественный язык и информационные системы", deadline: new Date(2019, 3 - 1, 1 - 1, 23, 59, 59, 0)});
@@ -57,6 +53,8 @@ deadlines.push({venue: "NLDB", area: "Естественный язык и ин�
 deadlines.push({venue: "ACL", area: "Компьютерная лингвистика", deadline: new Date(2019, 3 - 1, 4 - 1, 14, 59, 59, 0)});
 
 deadlines.push({venue: "*SEM", area: "Лексическая и вычислительная семантика", deadline: new Date(2019, 3 - 1, 9 - 1, 23, 59, 59, 0), approx: 1});
+
+deadlines.push({venue: "BSNLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 4 - 1, 26 - 1, 23, 59, 59, 0), approx: 1});
 
 deadlines.push({venue: "EMNLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 22 - 1, 23, 59, 59, 0), approx: 1});
 
@@ -79,6 +77,8 @@ deadlines.push({venue: "LREC", area: "Языковые ресурсы и их о
 deadlines.push({venue: "EACL", area: "Компьютерная лингвистика", deadline: new Date(2019, 12 - 1, 17 - 1, 2, 59, 59, 0), approx: 1});
 
 deadlines.push({venue: "КИИ", area: "Искусственный интеллект", deadline: new Date(2020, 4 - 1, 14 - 1, 23, 59, 59, 0), approx: 1});
+
+deadlines.push({venue: "NAACL", area: "Компьютерная лингвистика", deadline: new Date(2020, 12 - 1, 3 - 1, 14, 59, 59, 0), approx: 1});
 
 // Display function, called every second or so
 function refreshDisplay() {
