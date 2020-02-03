@@ -13,7 +13,7 @@
 <meta property="fb:admins" content="1447043595" />
 <link rel="canonical" href="http://countdown.nlpub.ru/">
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 var backi = -1;
@@ -46,45 +46,64 @@ var timeLeftDescription = function(x) {
 // Note 2: dates are shifted by 1 for month, as they start at 0. Thanks date object in Javascript!
 var deadlines = new Array();
 
-deadlines.push({venue: "Диалог", area: "Компьютерная лингвистика", deadline: new Date(2019, 2 - 1, 20, 23, 59, 59, 0)});
+deadlines.push({venue: "SIGIR", rank: "A*", area: "Информационный поиск", deadline: new Date(2020, 1 - 1, 20 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "NLDB", area: "Естественный язык и информационные системы", deadline: new Date(2019, 3 - 1, 1, 23, 59, 59, 0)});
+deadlines.push({venue: "IJCAI", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 1 - 1, 21 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "ACL", area: "Компьютерная лингвистика", deadline: new Date(2019, 3 - 1, 4 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "NLDB", rank: "n/a", area: "Естественный язык и информационные системы", deadline: new Date(2020, 2 - 1, 1, 23, 59, 59, 0)});
 
-deadlines.push({venue: "*SEM", area: "Лексическая и вычислительная семантика", deadline: new Date(2019, 3 - 1, 6 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "Диалог", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2020, 2 - 1, 16, 23, 59, 59, 0)});
 
-deadlines.push({venue: "BSNLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 4 - 1, 26 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "COLING", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 4 - 1, 8 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "PACLIC", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AIST", rank: "n/a", area: "Анализ изображений, текстов, социальных сетей", deadline: new Date(2020, 5 - 1, 5, 23, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "EMNLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 21 + 1, 9, 59, 59, 0)});
+deadlines.push({venue: "PACLIC", rank: "B", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 10 + 1, 2, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "RANLP", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 15, 23, 59, 59, 0)});
+deadlines.push({venue: "EMNLP", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 11 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "CoNLL", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 31 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "КИИ", rank: "n/a", area: "Искусственный интеллект", deadline: new Date(2020, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "AINL", area: "Искусственный интеллект и естественный язык", deadline: new Date(2019, 5 - 1, 25 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AINL", rank: "n/a", area: "Искусственный интеллект и естественный язык", deadline: new Date(2020, 5 - 1, 20, 23, 59, 59, 0)});
 
-deadlines.push({venue: "DAMDID/RCDL", area: "Анализ данных", deadline: new Date(2019, 5 - 1, 31 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "*SEM", rank: "n/a", area: "Лексическая и вычислительная семантика", deadline: new Date(2020, 5 - 1, 20 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "KONVENS", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 31 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "NeurIPS 2020", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 5 - 1, 23 + 1, 9, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "RuSSIR", area: "Информационный поиск", deadline: new Date(2019, 7 - 1, 10 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "DAMDID/RCDL", rank: "n/a", area: "Анализ данных", deadline: new Date(2020, 5 - 1, 31, 23, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "SIBIRCON", area: "Анализ данных", deadline: new Date(2019, 8 - 1, 1 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "CoNLL", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 31 + 1, 14, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "Big Data Conference", area: "Большие данные", deadline: new Date(2019, 8 - 1, 25 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AACL", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2020, 6 - 1, 26 + 1, 14, 59, 59, 0)});
 
-deadlines.push({venue: "Открытая конференция ИСП РАН", area: "Открытые данные", deadline: new Date(2019, 9 - 1, 19 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "INLG", rank: "B", area: "Генерация текста", deadline: new Date(2020, 7 - 1, 12 + 1, 10, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "LREC", area: "Языковые ресурсы и их оценка", deadline: new Date(2019, 11 - 1, 25 - 1, 23, 59, 59, 0)});
+deadlines.push({venue: "AAAI 2021", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 9 - 1, 5 + 1, 12, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "EACL", area: "Компьютерная лингвистика", deadline: new Date(2019, 12 - 1, 17 - 1, 2, 59, 59, 0), approx: 1});
+deadlines.push({venue: "Открытая конференция ИСП РАН", rank: "n/a", area: "Открытые данные", deadline: new Date(2020, 10 - 1, 2, 23, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "КИИ", area: "Искусственный интеллект", deadline: new Date(2020, 4 - 1, 14 - 1, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "NAACL 2021", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 12 - 1, 9 + 1, 14, 59, 59, 0), approx: 1});
 
-deadlines.push({venue: "NAACL", area: "Компьютерная лингвистика", deadline: new Date(2020, 12 - 1, 3 - 1, 14, 59, 59, 0), approx: 1});
+deadlines.push({venue: "ACL 2021", rank: "A*", area: "Компьютерная лингвистика", deadline: new Date(2021, 3 - 1, 4 + 1, 14, 59, 59, 0), approx: 1});
+
+deadlines.push({venue: "RANLP 2021", rank: "C", area: "Компьютерная лингвистика", deadline: new Date(2021, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
+
+deadlines.push({venue: "LREC 2022", rank: "C", area: "Языковые ресурсы и их оценка", deadline: new Date(2021, 12 - 1, 2 + 1, 1, 59, 59, 0), approx: 1});
+
+
+//deadlines.push({venue: "BSNLP", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2019, 4 - 1, 26 + 1, 14, 59, 59, 0)});
+
+//deadlines.push({venue: "Big Data Conference", rank: "n/a", area: "Большие данные", deadline: new Date(2019, 8 - 1, 25 - 1, 23, 59, 59, 0), approx: 1});
+
+//deadlines.push({venue: "KONVENS", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2019, 5 - 1, 31 - 1, 23, 59, 59, 0), approx: 1});
+
+//deadlines.push({venue: "RuSSIR", rank: "n/a", area: "Информационный поиск", deadline: new Date(2019, 7 - 1, 10 - 1, 23, 59, 59, 0), approx: 1});
+
+//deadlines.push({venue: "SIBIRCON", rank: "n/a", area: "Анализ данных", deadline: new Date(2019, 8 - 1, 1 - 1, 23, 59, 59, 0), approx: 1});
+
+//deadlines.push({venue: "EACL", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2019, 12 - 1, 17 - 1, 2, 59, 59, 0), approx: 1});
+
+
 
 // Display function, called every second or so
 function refreshDisplay() {
@@ -112,7 +131,7 @@ function refreshDisplay() {
       $("#deadline" + i).html(
         "<div class=\"tld\">" + timeLeftDescription(timeLeft) + "</div>"
       + "<div class=\"vd\">" + dl.venue + "</div>"
-      + "<div class=\"ad\">" + dl.area + "</div>"
+      + "<div class=\"ad\">" + dl.area + " (rank: " + dl.rank + ") " + "</div>"
       + "<div class=\"td\"> Приём работ до " + timeDescription(dlLocal) + ".</div>"
       + "<div class=\"wd\">" + warningString + "</div>"
       );
