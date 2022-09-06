@@ -24,6 +24,15 @@ var timeDescription = function(x) {
   return x.toLocaleString();
 }
 
+var create_date = function(year, month, day, hour=23, minute=59, second=59) {
+  return new Date(year, month - 1, day, hour, minute, second)
+}
+
+var utc_m12_msc = function(official_date) {
+  official_date.setHours(official_date.getHours() + 15);
+  return official_date
+}
+
 var timeLeftDescription = function(x) {
 
   var t = x.getTime();
@@ -42,60 +51,98 @@ var timeLeftDescription = function(x) {
 }
 
 // DATABASE
-// Note 1: CODE ASSUMES DEADLINES ARE SPECIFIED IN MSK TIME
-// Note 2: dates are shifted by 1 for month, as they start at 0. Thanks date object in Javascript!
+// Note: create_date assumes deadlines are specified in UTC-12 time
+// Note: deadline attribute assumes deadlines are in MSK time
 var deadlines = new Array();
 
-deadlines.push({venue: "SIGIR", rank: "A*", area: "Информационный поиск", deadline: new Date(2020, 1 - 1, 20 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "ICLR 2023-abstract", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2022, 9, 21))});
+deadlines.push({venue: "ICLR 2023", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2022, 9, 28))});
 
-deadlines.push({venue: "IJCAI", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 1 - 1, 21 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "ECIR 2023-full abstract", rank: "A", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2022, 9, 30))});
+deadlines.push({venue: "ECIR 2023-full", rank: "A", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2022, 10, 7))});
+deadlines.push({venue: "ECIR 2023-short abstract", rank: "A", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2022, 10, 14))});
+deadlines.push({venue: "ECIR 2023-short/demo", rank: "A", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2022, 10, 21))});
 
-deadlines.push({venue: "NLDB", rank: "n/a", area: "Естественный язык и информационные системы", deadline: new Date(2020, 2 - 1, 1, 23, 59, 59, 0)});
+deadlines.push({venue: "EACL 2023", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2022, 10, 15)), approx: 1});
+deadlines.push({venue: "EACL 2023-demo", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 1, 15)), approx: 1});
 
-deadlines.push({venue: "ICML", rank: "A*", area: "Машинное обучение", deadline: new Date(2020, 2 - 1, 6 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2022, 10, 15))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2022, 12, 1))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 1, 15))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 3, 1))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 4, 15))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 6, 1))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 7, 15))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 9, 1))});
+deadlines.push({venue: "ACL rolling review", rank: "n/a", area: "All ACL venues", deadline: utc_m12_msc(create_date(2023, 10, 15))});
 
-deadlines.push({venue: "KDD", rank: "A*", area: "Извлечение информации", deadline: new Date(2020, 2 - 1, 13 + 1, 13, 59, 59, 0)});
+deadlines.push({venue: "Открытая конференция ИСП РАН 2022", rank: "n/a", area: "Открытые данные", deadline: create_date(2022, 10, 25)});
 
-deadlines.push({venue: "Диалог", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2020, 2 - 1, 16, 23, 59, 59, 0)});
+deadlines.push({venue: "WWW 2023 full abstract", rank: "A*", area: "Икуственный интеллект", deadline: create_date(2022, 10, 6)});
+deadlines.push({venue: "WWW 2023 full", rank: "A*", area: "Икуственный интеллект", deadline: create_date(2022, 10, 13)});
+deadlines.push({venue: "WWW 2023-short/demo", rank: "A*", area: "Икуственный интеллект", deadline: create_date(2023, 2, 3)});
 
-deadlines.push({venue: "COLING", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 4 - 1, 8 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "ACL 2023", rank: "A*", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 01, 15)), approx: 1});
+deadlines.push({venue: "ACL 2023-demo", rank: "A*", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 2, 24)), approx: 1});
 
-deadlines.push({venue: "AIST", rank: "n/a", area: "Анализ изображений, текстов, социальных сетей", deadline: new Date(2020, 5 - 1, 5, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "IJCAI 2023-abstract", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 1, 7)), approx: 1});
+deadlines.push({venue: "IJCAI 2023", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 1, 14)), approx: 1});
 
-deadlines.push({venue: "PACLIC", rank: "B", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 10 + 1, 2, 59, 59, 0), approx: 1});
+deadlines.push({venue: "SIGIR 2023-full abstract", rank: "A*", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2023, 1, 21)), approx: 1});
+deadlines.push({venue: "SIGIR 2023-full", rank: "A*", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2023, 1, 28)), approx: 1});
+deadlines.push({venue: "SIGIR 2023-demo", rank: "A*", area: "Информационный поиск", deadline: utc_m12_msc(create_date(2023, 2, 21)), approx: 1});
 
-deadlines.push({venue: "EMNLP", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 11 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "ICML 2022-abstract", rank: "A*", area: "Машинное обучение", deadline: utc_m12_msc(create_date(2023, 1, 20)), approx: 1});
+deadlines.push({venue: "ICML 2022", rank: "A*", area: "Машинное обучение", deadline: utc_m12_msc(create_date(2023, 1, 27)), approx: 1});
 
-deadlines.push({venue: "КИИ", rank: "n/a", area: "Искусственный интеллект", deadline: new Date(2020, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AIME abstract 2022", rank: "B", area: "AI in Medicine", deadline: create_date(2023, 1, 15), approx: 1});
+deadlines.push({venue: "AIME 2022", rank: "B", area: "AI in Medicine", deadline: create_date(2023, 1, 31), approx: 1});
 
-deadlines.push({venue: "AINL", rank: "n/a", area: "Искусственный интеллект и естественный язык", deadline: new Date(2020, 5 - 1, 20, 23, 59, 59, 0)});
+deadlines.push({venue: "KDD 2023", rank: "A*", area: "Извлечение информации", deadline: utc_m12_msc(create_date(2023, 2, 10)), approx: 1});
 
-deadlines.push({venue: "*SEM", rank: "n/a", area: "Лексическая и вычислительная семантика", deadline: new Date(2020, 5 - 1, 20 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "NLDB 2022", rank: "C", area: "Естественный язык и информационные системы", deadline: utc_m12_msc(create_date(2023, 2, 28)), approx: 1});
 
-deadlines.push({venue: "NeurIPS 2020", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 5 - 1, 23 + 1, 9, 59, 59, 0), approx: 1});
+deadlines.push({venue: "INLG 2023", rank: "B", area: "Генерация текста", deadline: utc_m12_msc(create_date(2023, 3, 15)), approx: 1});
 
-deadlines.push({venue: "DAMDID/RCDL", rank: "n/a", area: "Анализ данных", deadline: new Date(2020, 5 - 1, 31, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AINL 2023", rank: "n/a", area: "Искусственный интеллект и естественный язык", deadline: utc_m12_msc(create_date(2023, 3, 10)), approx: 1});
 
-deadlines.push({venue: "CoNLL", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 5 - 1, 31 + 1, 14, 59, 59, 0), approx: 1});
+deadlines.push({venue: "Диалог 2023", rank: "n/a", area: "Компьютерная лингвистика", deadline: create_date(2023, 3, 20)});
 
-deadlines.push({venue: "AACL", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2020, 6 - 1, 26 + 1, 14, 59, 59, 0)});
+deadlines.push({venue: "*SEM 2023", rank: "n/a", area: "Лексическая и вычислительная семантика", deadline: utc_m12_msc(create_date(2023, 3, 11)), approx: 1});
 
-deadlines.push({venue: "INLG", rank: "B", area: "Генерация текста", deadline: new Date(2020, 7 - 1, 12 + 1, 10, 59, 59, 0), approx: 1});
+deadlines.push({venue: "ISWC 2023-abstract", rank: "A*", area: "Semantic Web", deadline: utc_m12_msc(create_date(2023, 4, 28)), approx: 1});
+deadlines.push({venue: "ISWC 2023", rank: "A*", area: "Semantic Web", deadline: utc_m12_msc(create_date(2023, 5, 5)), approx: 1});
 
-deadlines.push({venue: "AAAI 2021", rank: "A*", area: "Искусственный интеллект", deadline: new Date(2020, 9 - 1, 5 + 1, 12, 59, 59, 0), approx: 1});
+deadlines.push({venue: "PACLIC 2023", rank: "B", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 4, 20)), approx: 1});
 
-deadlines.push({venue: "ICLR 2021", rank: "n/a", area: "Векторные представления", deadline: new Date(2020, 9 - 1, 25, 17, 59, 59, 0), approx: 1});
+deadlines.push({venue: "NeurIPS 2023-abstract", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 5, 21)), approx: 1});
+deadlines.push({venue: "NeurIPS 2023", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 5, 28)), approx: 1});
 
-deadlines.push({venue: "Открытая конференция ИСП РАН", rank: "n/a", area: "Открытые данные", deadline: new Date(2020, 10 - 1, 2, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "EMNLP 2023", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 5, 15)), approx: 1});
 
-deadlines.push({venue: "NAACL 2021", rank: "A", area: "Компьютерная лингвистика", deadline: new Date(2020, 12 - 1, 9 + 1, 14, 59, 59, 0), approx: 1});
+deadlines.push({venue: "COLING 2024", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2024, 5, 17))});
 
-deadlines.push({venue: "ACL 2021", rank: "A*", area: "Компьютерная лингвистика", deadline: new Date(2021, 3 - 1, 4 + 1, 14, 59, 59, 0), approx: 1});
+deadlines.push({venue: "CoNLL 2023", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 6, 14)), approx: 1});
 
-deadlines.push({venue: "RANLP 2021", rank: "C", area: "Компьютерная лингвистика", deadline: new Date(2021, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
+deadlines.push({venue: "CIKM 2023 abstract", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 5, 12)), approx: 1});
+deadlines.push({venue: "CIKM 2023", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 5, 19)), approx: 1});
 
-deadlines.push({venue: "LREC 2022", rank: "C", area: "Языковые ресурсы и их оценка", deadline: new Date(2021, 12 - 1, 2 + 1, 1, 59, 59, 0), approx: 1});
+deadlines.push({venue: "AACL-IJCNLP 2023", rank: "B", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2023, 6, 15)), approx: 1});
 
+deadlines.push({venue: "AIST 2023-abstract", rank: "national: Russia", area: "Анализ изображений, текстов, социальных сетей", deadline: create_date(2023, 7, 15), approx: 1});
+deadlines.push({venue: "AIST 2023", rank: "national: Russia", area: "Анализ изображений, текстов, социальных сетей", deadline: create_date(2023, 7, 20), approx: 1});
+
+deadlines.push({venue: "LREC 2024", rank: "C", area: "Языковые ресурсы и их оценка", deadline: create_date(2024, 1, 17 + 1, 1, 59, 59, 0), approx: 1});
+
+deadlines.push({venue: "NAACL 2024", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2024, 02, 15)), approx: 1});
+deadlines.push({venue: "NAACL 2024-demo", rank: "A", area: "Компьютерная лингвистика", deadline: utc_m12_msc(create_date(2024, 3, 11)), approx: 1});
+
+deadlines.push({venue: "AAAI 2023-abstract", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 8, 30)), approx: 1});
+deadlines.push({venue: "AAAI 2023", rank: "A*", area: "Искусственный интеллект", deadline: utc_m12_msc(create_date(2023, 9, 8)), approx: 1});
+
+// deadlines.push({venue: "RANLP 2023", rank: "national: Bulgaria", area: "Компьютерная лингвистика", deadline: new Date(2021, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
+
+//deadlines.push({venue: "КИИ", rank: "n/a", area: "Искусственный интеллект", deadline: new Date(2021, 5 - 1, 15, 23, 59, 59, 0), approx: 1});
 
 //deadlines.push({venue: "BSNLP", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2019, 4 - 1, 26 + 1, 14, 59, 59, 0)});
 
@@ -107,8 +154,14 @@ deadlines.push({venue: "LREC 2022", rank: "C", area: "Языковые ресу�
 
 //deadlines.push({venue: "SIBIRCON", rank: "n/a", area: "Анализ данных", deadline: new Date(2019, 8 - 1, 1 - 1, 23, 59, 59, 0), approx: 1});
 
-//deadlines.push({venue: "EACL", rank: "n/a", area: "Компьютерная лингвистика", deadline: new Date(2019, 12 - 1, 17 - 1, 2, 59, 59, 0), approx: 1});
+// deadlines.push({venue: "DAMDID/RCDL", rank: "n/a", area: "Анализ данных", deadline: new Date(2021, 5 - 1, 31, 23, 59, 59, 0), approx: 1});
 
+
+function compareDeadlines(a,b){
+	return a.deadline - b.deadline;
+};
+
+deadlines.sort(compareDeadlines);
 
 
 // Display function, called every second or so
@@ -356,3 +409,5 @@ h1{
 
 </body>
 </html>
+
+<!-- DSAA --!>
